@@ -1,55 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Grofers Checkout</title>
   <style>
-    table, td, th {
+    table, th, td {
       border: 1px solid black;
       border-collapse: collapse;
       padding: 8px;
-    }
-    th {
-      background-color: #f2f2f2;
     }
     .price {
       background-color: #fffbe7;
     }
     #ans {
-      font-weight: bold;
       margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>Grocery List</h1>
+  <h1>Grofers Checkout</h1>
 
   <table>
-    <tr>
-      <th>Item</th>
-      <th>Price (₹)</th>
-    </tr>
-    <tr>
-      <td class="item">Apple</td>
-      <td class="price" contenteditable="true">40</td>
-    </tr>
-    <tr>
-      <td class="item">Banana</td>
-      <td class="price" contenteditable="true">30</td>
-    </tr>
-    <tr>
-      <td class="item">Milk</td>
-      <td class="price" contenteditable="true">50</td>
-    </tr>
-    <tr>
-      <td class="item">Bread</td>
-      <td class="price" contenteditable="true">60</td>
-    </tr>
-    <tr>
-      <td class="item">Eggs</td>
-      <td class="price" contenteditable="true">25</td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="item">Apple</td>
+        <td class="price" contenteditable="true">40</td>
+      </tr>
+      <tr>
+        <td class="item">Banana</td>
+        <td class="price" contenteditable="true">30</td>
+      </tr>
+      <tr>
+        <td class="item">Milk</td>
+        <td class="price" contenteditable="true">50</td>
+      </tr>
+      <tr>
+        <td class="item">Bread</td>
+        <td class="price" contenteditable="true">60</td>
+      </tr>
+      <tr>
+        <td class="item">Eggs</td>
+        <td class="price" contenteditable="true">25</td>
+      </tr>
+    </tbody>
   </table>
 
   <button onclick="calculateTotal()">Calculate Total</button>
@@ -58,17 +59,18 @@
 
   <script>
     function calculateTotal() {
-      const prices = document.querySelectorAll('.price');
       let total = 0;
-
-      prices.forEach(cell => {
-        const value = parseFloat(cell.innerText);
-        if (!isNaN(value)) {
-          total += value;
+      const priceCells = document.querySelectorAll('.price');
+      
+      priceCells.forEach(cell => {
+        const val = cell.innerText.trim();
+        const number = parseFloat(val);
+        if (!isNaN(number)) {
+          total += number;
         }
       });
 
-      document.getElementById('ans').textContent = total;
+      document.getElementById("ans").innerText = total;
     }
   </script>
 
